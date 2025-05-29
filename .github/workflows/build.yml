@@ -31,6 +31,10 @@ jobs:
       - name: Install dependencies
         run: npm install --include=optional
 
+      - name: Install sharp in ubuntu
+        if: matrix.os == 'ubuntu-latest'
+        run: npm install --platform=linux --arch=x64 --target=20x sharp@0.32.6 --force
+
       - name: Testing on OS (${{ matrix.os }}) with Node.js (version ${{ matrix.node-version }}) attempt ${{ matrix.attempt }}
         run: |
           echo "Run attempt: ${{ matrix.attempt }}"
